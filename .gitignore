@@ -1,0 +1,6 @@
+*.db
+*.db-journal
+__pycache__
+lib/bot/token.0
+.idea
+venv
