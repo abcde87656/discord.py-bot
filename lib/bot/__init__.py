@@ -1,3 +1,4 @@
+from discord import Intents
 from discord.ext.commands import Bot as BotBase
 from apscheduler.schedulers.asyncio import AsyncIOScheduler
 
@@ -11,18 +12,17 @@ class Bot(BotBase):
         self.ready = False
         self.guild = None
         self.scheduler = AsyncIOScheduler()
-
-        super().__init__(command_prefix=PREFIX, owner_ids=OWNER_IDS)
+        super().__init__(command_prefix=PREFIX, owner_ids=OWNER_IDS, Intents=Intents.all())
 
     def run(self, version):
         self.VERSION = version
 
-        with open("./lib/bot/token.0", "r", encoding="utf-8") as tf:
-            print(tf.read())
+        with open("./lib/bot/token", "r", encoding="utf-8") as tf:
             self.TOKEN = tf.read()
 
         print("running bot")
-        super().run(self.TOKEN)
+
+        super().run(self.TOKEN, reconnect=True)
 
     async def on_connect(self):
         print("bot connected")

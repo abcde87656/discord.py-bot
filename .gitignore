@@ -1,6 +1,6 @@
 *.db
 *.db-journal
 __pycache__
-lib/bot/token.0
+lib/bot/token
 .idea
 venv
